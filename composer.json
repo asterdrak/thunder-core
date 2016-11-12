@@ -1,0 +1,8 @@
+{
+    "name": "asterdrak/thunder-core",
+    "autoload": {
+        "psr-0" : {
+            "" : "src"
+        }
+    }
+}
