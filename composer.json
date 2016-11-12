@@ -1,5 +1,6 @@
 {
     "name": "asterdrak/thunder-core",
+    "type": "library",
     "autoload": {
         "psr-0" : {
             "ThunderCore\\" : "src"
