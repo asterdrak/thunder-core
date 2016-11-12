@@ -1,9 +1,9 @@
 <?php
 namespace ThunderCore;
 
-class HalloThere
+class App
 {
-    public function sayHallo()
+    public function start()
     {
         return 'Hallo!';
     }
