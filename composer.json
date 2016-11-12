@@ -2,7 +2,7 @@
     "name": "asterdrak/thunder-core",
     "autoload": {
         "psr-0" : {
-            "Asterdrak\\ThunderCore" : "src"
+            "ThunderCore\\" : "src"
         }
     }
 }

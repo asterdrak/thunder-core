@@ -1,5 +1,5 @@
 <?php
-namespace Asterdrak\ThunderCore;
+namespace ThunderCore;
 
 class HalloThere
 {
