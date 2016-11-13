@@ -1,31 +1,52 @@
 <?php
 namespace ThunderCore;
 
-// function Psysh() {
-//   eval(\Psy\sh());
-// }
-
 /**
-* 
+* General app class
 */
-class App// extends AnotherClass
+class App
 {
+    /**
+     * ENVIRONMENT object with env variables
+     */
     public $environment;
-    public static $root_dir;
-    public $dbParams;
 
     /**
-    *
+     * string with system path to app root directory
+     */
+    public static $root_dir;
+
+    /**
+     * doctrine params for creating Doctrine\ORM\EntityManager object
+     */
+    public $dbParams;
+
+
+    // ----------------------------------------
+    //             PUBLIC METHODS
+    // ----------------------------------------
+
+    /**
+    * get ENVIRONMENT_NAME as params (probably DEVELOPMENT, PRODUCTION or TEST)
     */
     function __construct($ENVIRONMENT_NAME) {
-      self::$root_dir = getcwd();
-
-      $this->environment = new Environment($ENVIRONMENT_NAME);
-
-      $this->dbParams = $this->environment['dbParams'];
+      set_root_dir();
+      set_env();
     }
 
-    public function start() {
-        return 'Hallo!';
+    // ----------------------------------------
+    //             PRIVATE METHODS
+    // ----------------------------------------
+
+    private function set_root_dir() {
+      self::$root_dir = getcwd();
+    }
+
+    /**
+    * set environment object and this object fields (from Environment object)
+    */
+    private function set_env() {
+      $this->environment = new Environment($ENVIRONMENT_NAME);
+      $this->dbParams = $this->environment['dbParams'];
     }
 }
