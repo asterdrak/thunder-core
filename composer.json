@@ -1,5 +1,6 @@
 {
   "name": "asterdrak/thunder-core",
+  "description": "Small, simple and swift object oriented web development framework.",
   "type": "library",
   "authors": [
       {
@@ -7,6 +8,9 @@
         "email": "asterdrak@gmail.com"
       }
   ],
+
+  "minimum-stability": "stable",
+
   "require": {
     "doctrine/orm": "2.4.*",
     "symfony/yaml": "2.*",
@@ -18,5 +22,8 @@
       "psr-0" : {
           "ThunderCore\\" : "lib"
       }
+  },
+  "require-dev": {
+    "codeception/codeception": "^2.2"
   }
 }
