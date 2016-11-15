@@ -29,8 +29,8 @@ class App
     * get ENVIRONMENT_NAME as params (probably DEVELOPMENT, PRODUCTION or TEST)
     */
     function __construct($ENVIRONMENT_NAME) {
-      set_root_dir();
-      set_env();
+      $this->set_root_dir();
+      $this->set_env($ENVIRONMENT_NAME);
     }
 
     // ----------------------------------------
@@ -44,7 +44,7 @@ class App
     /**
     * set environment object and this object fields (from Environment object)
     */
-    private function set_env() {
+    private function set_env($ENVIRONMENT_NAME) {
       $this->environment = new Environment($ENVIRONMENT_NAME);
       $this->dbParams = $this->environment['dbParams'];
     }
