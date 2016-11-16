@@ -9,7 +9,7 @@ class App
     /**
      * ENVIRONMENT object with env variables
      */
-    public $environment;
+    private $environment;
 
     /**
      * string with system path to app root directory
@@ -19,7 +19,7 @@ class App
     /**
      * doctrine params for creating Doctrine\ORM\EntityManager object
      */
-    public $dbParams;
+    private $dbParams;
 
     /**
      * app name based on directory name of application root
