@@ -22,9 +22,8 @@ class Environment implements ArrayAccess
 
 
   public function __construct($ENVIRONMENT_NAME) {
-    require_once (App::$root_dir . "/config/environments/" . strtolower($ENVIRONMENT_NAME) . ".php");
+    require_once(App::$root_dir . "/config/environments/" . strtolower($ENVIRONMENT_NAME) . ".php");
     $this->variables = $environment_variables;
-
   }
 
   public function offsetGet($offset) {

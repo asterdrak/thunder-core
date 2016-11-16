@@ -21,6 +21,11 @@ class App
      */
     public $dbParams;
 
+    /**
+     * app name based on directory name of application root
+     */
+    private $name;
+
     // ----------------------------------------
     //             PUBLIC METHODS
     // ----------------------------------------
@@ -31,11 +36,23 @@ class App
     function __construct($ENVIRONMENT_NAME) {
       $this->set_root_dir();
       $this->set_env($ENVIRONMENT_NAME);
+      $this->set_app_name();
+    }
+
+    function __get($property) {
+            if (property_exists($this, $property)) {
+                return $this->$property;
+            }
     }
 
     // ----------------------------------------
     //             PRIVATE METHODS
     // ----------------------------------------
+
+    private function set_app_name() {
+      $dirs = explode("/", self::$root_dir);
+      $this->name = end($dirs);
+    }
 
     private function set_root_dir() {
       self::$root_dir = getcwd();
