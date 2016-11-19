@@ -12,14 +12,19 @@ class App
     private $environment;
 
     /**
+     * database object
+     */
+    private $database;
+
+    /**
+     * sets up entity menager
+     */
+    private $entityManager;
+
+    /**
      * string with system path to app root directory
      */
     public static $root_dir;
-
-    /**
-     * doctrine params for creating Doctrine\ORM\EntityManager object
-     */
-    private $dbParams;
 
     /**
      * app name based on directory name of application root
@@ -37,6 +42,7 @@ class App
       $this->set_root_dir();
       $this->set_env($ENVIRONMENT_NAME);
       $this->set_app_name();
+      $this->set_database();
     }
 
     function __get($property) {
@@ -49,6 +55,9 @@ class App
     //             PRIVATE METHODS
     // ----------------------------------------
 
+    /**
+     * sets app name from root directory name
+     */
     private function set_app_name() {
       $dirs = explode("/", self::$root_dir);
       $this->name = end($dirs);
@@ -58,11 +67,15 @@ class App
       self::$root_dir = getcwd();
     }
 
-    /**
-    * set environment object and this object fields (from Environment object)
-    */
     private function set_env($ENVIRONMENT_NAME) {
       $this->environment = new Environment($ENVIRONMENT_NAME);
-      $this->dbParams = $this->environment['dbParams'];
+    }
+
+    private function set_database() {
+      // if(empty($this->environment)) 
+      //   throw new Exception('You have to set environment first, use set_env method.')
+      // else
+      $this->database = new Database($this->environment);
+      $this->entityManager = $this->database->getEntityManager();
     }
 }

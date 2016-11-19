@@ -26,6 +26,15 @@ class Environment implements ArrayAccess
     $this->variables = $environment_variables;
   }
 
+  public function register_environment_variable($variable_name, $variable) {
+    if(is_array($this->variables))
+      $this->variables[$variable_name] = $variable;
+    else {
+      $message = "Use YOUR_APP/config/environments/ENVIRONMENT_NAME.php file to set \$environment_variables";
+      throw new Exception($message, 1);
+    }
+  }
+
   public function offsetGet($offset) {
     return isset($this->variables[$offset]) ? $this->variables[$offset] : null;
   }
