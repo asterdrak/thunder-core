@@ -36,13 +36,15 @@ class App
     // ----------------------------------------
 
     /**
-    * get ENVIRONMENT_NAME as params (probably DEVELOPMENT, PRODUCTION or TEST)
+    * get ENVIRONMENT_NAME as params (probably DEVELOPMENT, PRODUCTION or TEST), sets up app in GLOBALS
     */
     function __construct($ENVIRONMENT_NAME) {
       $this->set_root_dir();
       $this->set_env($ENVIRONMENT_NAME);
       $this->set_app_name();
       $this->set_database();
+
+      $GLOBALS['app'] = $this;
     }
 
     function __get($property) {
