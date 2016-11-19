@@ -44,7 +44,7 @@ class App
       $this->set_app_name();
       $this->set_database();
 
-      $GLOBALS['app'] = $this;
+      $GLOBALS['application'] = $this;
     }
 
     function __get($property) {

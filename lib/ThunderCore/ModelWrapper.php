@@ -17,7 +17,7 @@ class ModelWrapper
   function __construct($model_name)
   {
     $this->model_name = $model_name;
-    $this->app = $GLOBALS['app'];
+    $this->app = $GLOBALS['application'];
   }
 
   public function print() {
