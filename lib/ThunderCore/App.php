@@ -47,7 +47,7 @@ class App
       $GLOBALS['application'] = $this;
     }
 
-    function __get($property) {
+    public function __get($property) {
             if (property_exists($this, $property)) {
                 return $this->$property;
             }

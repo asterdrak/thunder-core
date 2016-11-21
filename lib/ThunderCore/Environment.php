@@ -15,6 +15,10 @@ class Environment implements ArrayAccess
    * stores env variables from external app
    */
   private $variables; 
+  /**
+   * name of env DEVELOPMENT, TEST, PRODUCTION
+   */
+  private $name;
 
   // ----------------------------------------
   //            PUBLIC METHODS
@@ -23,6 +27,7 @@ class Environment implements ArrayAccess
 
   public function __construct($ENVIRONMENT_NAME) {
     require_once(App::$root_dir . "/config/environments/" . strtolower($ENVIRONMENT_NAME) . ".php");
+    $this->name = $ENVIRONMENT_NAME;
     $this->variables = $environment_variables;
   }
 
@@ -52,6 +57,12 @@ class Environment implements ArrayAccess
     $this->throw_not_implemented();
     
   }
+
+  public function __get($property) {
+            if (property_exists($this, $property)) {
+                return $this->$property;
+            }
+    }
 
 
   // ----------------------------------------
