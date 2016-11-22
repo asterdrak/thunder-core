@@ -9,7 +9,6 @@ namespace ThunderCore;
 abstract class ModelBaseClass extends Helpers\BasicHelper
 {
 
-  // protected $app;usunąć nie potrzebne ASDAASKJASDKJAD;LKQWPOKFKFDSM/ANF/KLDNFQIENFLSKDNALSDJAK
   /**
    * variable decide if in save method we should do persist on entity or not
    * by default is set to false (do not persist)
