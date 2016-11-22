@@ -53,6 +53,13 @@ class App
             }
     }
 
+    /**
+    * reconnect do database and opens new entityManager
+    */
+    public function restart_entityManager() {
+      $this->set_database();
+    }
+
     // ----------------------------------------
     //             PRIVATE METHODS
     // ----------------------------------------

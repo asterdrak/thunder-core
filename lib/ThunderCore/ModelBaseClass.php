@@ -1,15 +1,24 @@
 <?php
+
 namespace ThunderCore;
 
 
 /**
 * Base class for entities (adds my methods)
 */
-abstract class ModelBaseClass
+abstract class ModelBaseClass extends Helpers\BasicHelper
 {
 
+  // protected $app;usunąć nie potrzebne ASDAASKJASDKJAD;LKQWPOKFKFDSM/ANF/KLDNFQIENFLSKDNALSDJAK
+  /**
+   * variable decide if in save method we should do persist on entity or not
+   * by default is set to false (do not persist)
+   * if object is newly created it should be set to true explicitly
+   */
+  private $do_persist = false;
+
   // ----------------------------------------
-  //           PUBLIC METHODS
+  //          PUBLIC METHODS AUTOS
   // ----------------------------------------
 
   /**
@@ -27,7 +36,7 @@ abstract class ModelBaseClass
 
   /**
   * magic getter for models classes
-  * checks if method exists end runs it
+  * checks if method get exists end runs it
   * if opposite throws an exception
   */
   public function __get($name) {
@@ -39,6 +48,56 @@ abstract class ModelBaseClass
     else {
       throw new Exception("Bad method name (parameter)", 1);
     }
+  }
+
+
+  /**
+   * magic setter for models classes
+   * checks if method set exists and runs it
+   * if opposite throws an exception
+   */
+  public function __set($name, $value) {
+    $method_name = "set" . $this->underscoresToCamelCase($name);
+
+    if (method_exists($this, $method_name)) {
+      $this->{$method_name}($value);
+    }
+    else {
+      throw new Exception("Bad method name (parameter)", 1);
+    }
+  }
+
+  // ----------------------------------------
+  //     PUBLIC METHODDS CLASS INTERFACE
+  // ----------------------------------------
+
+  /**
+  * tries to save new entity by persisting entity and flushing entityManager
+  * catches any error, restarts EntitryMenager and returns false (allowing next try)
+  * if flush succeds it returns true
+  */
+  public function save() {
+    $app = $GLOBALS['application'];
+    $app->entityManager->persist($this);
+
+    try {
+      $app->entityManager->flush();
+      return true;
+    } catch (\Exception $e) {
+      $app->restart_entityManager();
+      error_log($e->getMessage());
+      return false;
+      
+    }
+  }
+
+  /**
+  * sets do_persist variable (as param takes only (0 or 1)
+  * in other situation throws an exception
+  */
+  public function set_do_persist($bool) {
+    if($bool !== true AND $bool !== false) throw new Exception("Param must be 0 or 1", 1);
+    else $this->do_persist = $bool;
   }
 
 

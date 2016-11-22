@@ -5,7 +5,7 @@ namespace ThunderCore;
 /**
 * wraps up entities class in object to easy use Models
 */
-class ModelWrapper
+class ModelWrapper extends Helpers\BasicHelper
 {
   private $model_name;
   private $app;
@@ -25,6 +25,16 @@ class ModelWrapper
   }
 
   /**
+  * returns reference to newly created entity
+  */
+  public function new() {
+    $new_user = new $this->model_name();
+    $new_user->set_do_persist(true);
+    return $new_user;
+  }
+
+
+  /**
   * return array of all entities for chosen model
   */
   public function all() {
@@ -37,4 +47,5 @@ class ModelWrapper
   public function find($id) {
     return $this->app->entityManager->getRepository($this->model_name)->find($id);
   }
+
 }
