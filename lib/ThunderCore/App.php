@@ -44,7 +44,7 @@ class App
       $this->set_app_name();
       $this->set_database();
 
-      $GLOBALS['application'] = $this;
+      $this->set_global_application();
     }
 
     public function __get($property) {
@@ -58,6 +58,14 @@ class App
     */
     public function restart_entityManager() {
       $this->set_database();
+      $this->set_global_application();
+    }
+
+    /**
+    * reload database info by restarting EntityManager
+    */
+    public function reload_database() {
+      $this->restart_entityManager();
     }
 
     // ----------------------------------------
@@ -86,5 +94,9 @@ class App
       // else
       $this->database = new Database($this->environment);
       $this->entityManager = $this->database->getEntityManager();
+    }
+
+    private function set_global_application() {
+      $GLOBALS['application'] = $this;
     }
 }

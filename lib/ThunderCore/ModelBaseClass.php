@@ -100,6 +100,17 @@ abstract class ModelBaseClass extends Helpers\BasicHelper
   }
 
 
+  /**
+  * reloads database and set up user from scratch
+  * returns proper object (new)
+  */
+  public function reload() {
+    $app = $GLOBALS['application'];
+    $app->reload_database();
+    return $app->entityManager->getRepository(get_class($this))->find($this->id);
+  }
+
+
   // ----------------------------------------
   //             PRIVATE METHODS
   // ----------------------------------------

@@ -8,7 +8,7 @@ namespace ThunderCore;
 class ModelWrapper extends Helpers\BasicHelper
 {
   private $model_name;
-  private $app;
+  public $app;
   
 
   /**
@@ -38,6 +38,7 @@ class ModelWrapper extends Helpers\BasicHelper
   * return array of all entities for chosen model
   */
   public function all() {
+    $this->app = $GLOBALS['application'];
     return $this->app->entityManager->getRepository($this->model_name)->findAll();
   }
 
@@ -45,6 +46,7 @@ class ModelWrapper extends Helpers\BasicHelper
    * return model with specific id
    */
   public function find($id) {
+    $this->app = $GLOBALS['application'];
     return $this->app->entityManager->getRepository($this->model_name)->find($id);
   }
 
