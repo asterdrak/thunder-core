@@ -67,8 +67,6 @@ final class App
 
     $this->render = new Render();
 
-    $this->register_controllers_loader();
-
     $this->session = new Session();
 
     $this->set_global_application();
@@ -79,6 +77,8 @@ final class App
   * additionali it checks if there is at least one public group
   */
   public function run() {
+
+    $this->register_controllers_loader();
 
     $this->session->start();
 
