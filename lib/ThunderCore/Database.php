@@ -56,6 +56,7 @@ class Database
     $isDevMode = $this->environment['isDevMode'];
 
     $this->config = Setup::createYAMLMetadataConfiguration($paths, $isDevMode);
+    $this->config->setAutoGenerateProxyClasses(\Doctrine\Common\Proxy\AbstractProxyFactory::AUTOGENERATE_FILE_NOT_EXISTS);
   }
 
   private function set_entity_manager() {
