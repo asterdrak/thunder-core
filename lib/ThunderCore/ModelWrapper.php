@@ -23,8 +23,18 @@ class ModelWrapper extends Helpers\BasicHelper
   /**
   * returns reference to newly created entity
   */
-  public function new() {
+  public function new(Array $params = []) {
     $new_object = new $this->model_name();
+
+    foreach($params as $k => $v) {
+      try {
+        $new_object->$k = $v;
+      } catch (\Exception $e) {
+        error_log($e->getMessage());
+        return false;
+      }
+    }
+
     $new_object->set_do_persist(true);
     return $new_object;
   }
@@ -52,9 +62,18 @@ class ModelWrapper extends Helpers\BasicHelper
     }
   }
 
+  /**
+  * returns last instance from table
+  */
+  public function last() {
+    return $this->app->entityManager->getRepository($this->model_name)->findOneBy([], ['id' => 'DESC']);
+  }
 
+  /**
+  * returns first instance from table
+  */
   public function first() {
-    return $this->all()[0];
+    return $this->app->entityManager->getRepository($this->model_name)->findOneBy([], ['id' => 'ASC']);
   }
 
 }

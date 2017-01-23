@@ -47,6 +47,10 @@ final class App
    */
   private $session;
 
+  /**
+   * object which allows to use safe params
+   */
+  private $params;
 
   // ----------------------------------------
   //             PUBLIC METHODS

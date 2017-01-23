@@ -62,7 +62,7 @@ abstract class ModelBaseClass extends Helpers\BasicHelper
       $this->{$method_name}($value);
     }
     else {
-      throw new Exception("Bad method name (parameter)", 1);
+      throw new \Exception("Bad method name (parameter)", 1);
     }
   }
 
@@ -105,7 +105,7 @@ abstract class ModelBaseClass extends Helpers\BasicHelper
   * returns proper object (new)
   */
   public function reload() {
-    $app = $GLOBALS['application'];
+    $app = App::Instance();
     $app->reload_database();
     return $app->entityManager->getRepository(get_class($this))->find($this->id);
   }
