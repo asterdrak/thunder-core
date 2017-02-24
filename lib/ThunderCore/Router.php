@@ -20,6 +20,8 @@ class Router
     if($this->url != '/')
       new RouteAssets("assets{$this->url}");
 
+    $url = explode("?", $url)[0];
+
     $url_arr = explode("/", $url);
 
     if($url_arr[1] == null) {

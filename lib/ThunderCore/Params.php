@@ -7,7 +7,7 @@ namespace ThunderCore;
 */
 class Params extends Helpers\BasicHelper implements \ArrayAccess
 {
-  private $container;
+  public $container;
 
   function __construct($container = NULL)
   {

@@ -10,6 +10,7 @@ class Element
 {
   private $css_meta;
   private $js_meta;
+  public $render_template = true;
 
   public $vars = [];
 

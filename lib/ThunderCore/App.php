@@ -96,7 +96,8 @@ final class App
 
       $element = new Element($router->controller, $router->method, $router->id);
 
-      $this->render->display('app/views/public/template.haml', $element->vars);
+      if($element->render_template)
+        $this->render->display('app/views/public/template.haml', $element->vars);
 
     } catch (\Exception $e) {
       header("HTTP/1.0 404 Not Found");
