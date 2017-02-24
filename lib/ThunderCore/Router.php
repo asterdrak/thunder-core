@@ -10,6 +10,7 @@ class Router
   private $url;
   private $controller;
   private $method;
+  private $id;
 
 
   function __construct($url)
@@ -27,7 +28,14 @@ class Router
     }
     else {
       $this->controller = $url_arr[1];
-      $this->method = $url_arr[2];
+      if(empty($url_arr[2]))
+        $this->method = 'index';
+      elseif (is_numeric($url_arr[2])) {
+        $this->method = 'show';
+        $this->id = intval($url_arr[2]);
+      }
+      else
+        $this->method = $url_arr[2];
     }
   }
 

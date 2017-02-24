@@ -78,7 +78,7 @@ final class App
 
   /**
   * method which handles routing, controller and render view
-  * additionali it checks if there is at least one public group
+  * additionaly it checks if there is at least one public group
   */
   public function run() {
 
@@ -94,7 +94,7 @@ final class App
         "You have to at least one public group, use eg \$app->groups->add_public('public')
         ", 1);
 
-      $element = new Element($router->controller, $router->method);
+      $element = new Element($router->controller, $router->method, $router->id);
 
       $this->render->display('app/views/public/template.haml', $element->vars);
 
