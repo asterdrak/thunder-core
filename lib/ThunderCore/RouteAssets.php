@@ -17,7 +17,7 @@ class RouteAssets
   function __construct($filename)
   {
     if(file_exists($filename)) {
-
+      http_response_code(200);
       $this->extension = pathinfo($filename, PATHINFO_EXTENSION);
 
       $extension_uppercased = ucfirst($this->extension);

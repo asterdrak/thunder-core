@@ -91,6 +91,16 @@ abstract class ModelBaseClass extends Helpers\BasicHelper
   }
 
   /**
+  * allow to update attribues of resource with values from passed hash
+  */
+  public function update(Array $attributes) {
+    foreach ($attributes as $key => $value) {
+      $this->$key = $value;
+    }
+    return $this->save();
+  }
+
+  /**
   * sets do_persist variable (as param takes only (0 or 1)
   * in other situation throws an exception
   */

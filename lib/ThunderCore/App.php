@@ -81,7 +81,7 @@ final class App
   * additionaly it checks if there is at least one public group
   */
   public function run() {
-
+    http_response_code(500);
     $this->register_controllers_loader();
 
     $this->session->start();
@@ -96,11 +96,13 @@ final class App
 
       $element = new Element($router->controller, $router->method, $router->id);
 
-      if($element->render_template)
+      if($element->render_template) {
+        http_response_code(200);
         $this->render->display('app/views/public/template.haml', $element->vars);
+      }
 
     } catch (\Exception $e) {
-      header("HTTP/1.0 404 Not Found");
+      http_response_code(404);
       require self::$root_dir . '/404.php';
       die();
     }
