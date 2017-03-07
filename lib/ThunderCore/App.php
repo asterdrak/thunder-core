@@ -52,6 +52,12 @@ final class App
    */
   private $params;
 
+  /**
+   * controller and method names for current query
+   */
+  public $controller;
+  public $method;
+
   // ----------------------------------------
   //             PUBLIC METHODS
   // ----------------------------------------
@@ -98,7 +104,9 @@ final class App
 
       if($element->render_template) {
         http_response_code(200);
-        $this->render->display('app/views/public/template.haml', $element->vars);
+
+        $this->render->display('app/views/public/template.haml',
+          array_merge($element->vars, get_object_vars($this)));
       }
 
     } catch (\Exception $e) {

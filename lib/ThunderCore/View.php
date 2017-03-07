@@ -16,15 +16,25 @@ class View
   function __construct($controller_name, $method_name, $view_vars = [])
   {
 
-
-
     $app = App::Instance();
 
     foreach ($app->groups->current as $group) {
       $view_filename = "app/views/{$group}/{$controller_name}/{$method_name}.haml";
-      if(file_exists($view_filename))
+      if(file_exists($view_filename)) {
         $app->render->display($view_filename, $view_vars);
+        return true;
+      }
     }
+
+    die("<b>missing view file</b>"); //correct!!!!!! code smell
+
+    // 888888888888888888888888888888888888888888
+    // 888888888888888888888888888888888888888888
+    // 888888888888888888888888888888888888888888
+    //      this class is for correction!
+    // 888888888888888888888888888888888888888888
+    // 888888888888888888888888888888888888888888
+    // 888888888888888888888888888888888888888888
 
   }
 }

@@ -39,11 +39,23 @@ class Router
       else
         $this->method = $url_arr[2];
     }
+
+    $this->set_names();
   }
 
   public function __get($property) {
     if (property_exists($this, $property)) {
         return $this->$property;
     }
+  }
+
+  /**
+  * sets up controller and method names in App object
+  */
+  private function set_names() {
+    global $app;
+
+    $app->controller = $this->controller;
+    $app->method = $this->method;
   }
 }
