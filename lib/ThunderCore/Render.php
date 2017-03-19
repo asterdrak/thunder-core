@@ -36,8 +36,8 @@ class Render extends Helpers\BasicHelper
       $group = $groups->public[0];
     }
 
-    return function($template_path) use (&$executor, &$group) {
-        $executor->display(getcwd() . "/app/views/" . $group . "/" . $template_path . ".haml", []);
+    return function($template_path, $values = []) use (&$executor, &$group) {
+        $executor->display(getcwd() . "/app/views/" . $group . "/" . $template_path . ".haml", $values);
     };
   }
 }
