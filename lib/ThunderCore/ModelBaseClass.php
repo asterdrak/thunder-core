@@ -109,6 +109,16 @@ abstract class ModelBaseClass extends Helpers\BasicHelper
     else $this->do_persist = $bool;
   }
 
+  /**
+  * permanently deletes single record from db
+  */
+  public function destroy() {
+    $app = App::Instance();
+    $app->entityManager->remove($this);
+    $app->entityManager->flush();
+    return true;
+  }
+
 
   /**
   * reloads database and set up user from scratch
